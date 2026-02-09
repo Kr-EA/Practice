@@ -1,0 +1,128 @@
+*{
+    --border-color: rgb(181, 181, 181);
+    --hovered-block-background-color: rgb(233, 233, 233);
+    --repo-name-color: rgb(104, 166, 231);
+    --hovered-repo-name-color: rgb(69, 128, 192);
+    --lang-color: rgb(195, 66, 255); 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@keyframes repo-block-hovered{
+    from {
+        border-radius: 30px;
+        background-color: white;
+    }
+    to {
+        border-radius: 0px;
+        background-color: var(--hovered-block-background-color);
+    }
+}
+
+@keyframes repo-block-leaved{
+    from {
+        border-radius: 0px;
+        background-color: var(--hovered-block-background-color);
+    }
+    to {
+        border-radius: 30px;
+        background-color: white;
+    }
+}
+
+.repo-header, .repo-body{
+    margin-bottom: 20px;
+}
+
+.repo-body{
+    min-height: 50px;
+}
+
+.repo-privacy{
+    text-align: center;
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    width: 60px;
+    padding: 3px;
+}
+
+.repo-name{
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: 10px;
+    color: var(--repo-name-color);
+    transition: color 0.2s ease-in-out;
+}
+
+.repo-name:hover{
+    color: var(--hovered-repo-name-color);
+}
+
+.repo-block{
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    max-width: 600px;
+    min-width: 400px;
+    max-height: 300px;
+    padding: 10px;
+}
+
+.repo-block:hover{
+    animation: repo-block-hovered 0.5s forwards;
+}
+
+.repo-block:not(:hover){
+    animation: repo-block-leaved 0.5s forwards;
+}
+
+.repo-lang-color{
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--lang-color);
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.repo-footer, .repo-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footer-block{
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+    align-items: center;
+}
+
+.repo-storage{
+    display: grid;
+    padding: 10px;
+    gap: 10px;
+}
+
+@media (min-width: 480px) {
+    .repo-storage{
+        grid-template-columns: repeat(1, 0fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .repo-storage{
+        grid-template-columns: repeat(2, 0fr);
+    }
+}
+
+@media (min-width: 1025px) {
+    .repo-storage{
+        grid-template-columns: repeat(3, 0fr);
+    }
+}
+
+svg{
+    margin-right: 5px;
+}
