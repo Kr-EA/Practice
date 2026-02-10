@@ -1,27 +1,14 @@
-import colors from './colors.js';
-import setREADMEInfo from './card.js';
+import colors from './colors.ts';
+import setREADMEInfo from './card.ts';
 
 var repos;
 
-var container = document.querySelector('.repo-storage')
+var container: HTMLElement = document.querySelector('.repo-storage')
 
-const path = window.location.pathname;
-const id = path.substring(1);
-console.log(id);
+const path: string = window.location.pathname;
+const id: string = path.substring(1);
 if(id){
-
-    var specialRepo;
-
-    const body = document.querySelector('body')
-    body.innerHTML = ''
-    const response = await fetch (
-        `https://api.github.com/repositories/${id}`
-    )
-    if(!response.ok){
-        throw new Error("Error while loading")
-    }
-    specialRepo = await response.json() || {}
-
+    const body: HTMLElement = document.querySelector('body')
     body.innerHTML = 
     `
         <div class='card'>
@@ -40,20 +27,21 @@ if(id){
 
 else{
     document.addEventListener('DOMContentLoaded', () => {
-        const url = new URL(window.location)
-        var username = url.searchParams.get('username')
+        const url: URL = new URL(window.location.toString())
+        var username: string = url.searchParams.get('username')
         sessionStorage.setItem('user', username)
         getRepositoriesForUser()
     })
 
-    var form = document.querySelector('.change-username')
+    var form: HTMLFormElement= document.querySelector('.change-username')
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-        var username_value = document.querySelector('.username-input').value
-        const url = new URL(window.location)
+        var input: HTMLInputElement = document.querySelector('.username-input')
+        var username_value: string =  input.value
+        const url: URL = new URL(window.location.toString())
         url.searchParams.set('username', username_value)
         if(username_value){
-            window.location.href = url.toString()
+            window.location.href = url.toString() 
         }
         else{
             window.location.href = '/'
@@ -61,7 +49,7 @@ else{
     })
 
     async function getRepositoriesForUser(){
-        let username = sessionStorage.getItem('user')
+        let username: string = sessionStorage.getItem('user')
         if (!(!username || username === "null")){
             const response = await fetch (
                 `https://api.github.com/users/${sessionStorage.getItem('user')}/repos`
@@ -72,7 +60,6 @@ else{
             repos = await response.json() || []
         }
         else{
-            console.log(username);
             var response = await fetch (
                 `https://api.github.com/search/repositories?q=stars:>5000&sort=stars&order=desc&per_page=40`
             )
@@ -85,9 +72,9 @@ else{
 
         container.innerHTML = ''
 
-        var repoCount = 0;
+        var repoCount: number = 0;
         repos.forEach((repo) => {
-            var repoDOMEl = document.createElement('a');
+            var repoDOMEl: HTMLAnchorElement = document.createElement('a');
             repoDOMEl.setAttribute('href', repo.id);
             repoDOMEl.setAttribute('class', 'redirection-wrapper');
             repoDOMEl.innerHTML = `
@@ -136,7 +123,7 @@ else{
             repoCount += 1
         })
         if(repoCount == 0){
-            var alertEl = document.createElement('div')
+            var alertEl: HTMLElement = document.createElement('div')
             alertEl.setAttribute('class', 'alert-info')
             alertEl.innerHTML = `<h2>У пользователя ${sessionStorage.getItem('user')} нет репозиториев</h2>`
             container.appendChild(alertEl)
