@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    --bg-color: #ffffff;
+    --card-bg: #f8f9fa;
+    --border-color: #e1e4e8;
+    --link-color: #0969da;
+    --font-color: #586069;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.card {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    color: var(--font-color);
+}
+
+.card > h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #24292f;
+}
+
+.card > p {
+    font-size: 16px;
+    margin-bottom: 24px;
+    color: var(--font-color);
+}
+
+.card a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+.readme {
+    margin: 24px 0;
+    font-size: 15px;
+    color: #24292f;
+}
+
+.readme h1,
+.readme h2,
+.readme h3,
+.readme h4,
+.readme h5,
+.readme h6 {
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #24292f;
+}
+
+.readme h1 { font-size: 2em; }
+.readme h2 { font-size: 1.5em; }
+.readme h3 { font-size: 1.25em; }
+.readme h4 { font-size: 1em; }
+
+.readme p {
+    margin-bottom: 16px;
+}
+
+.readme ul,
+.readme ol {
+    padding-left: 30px;
+    margin-bottom: 16px;
+}
+
+.readme li {
+    margin-bottom: 8px;
+}
+
+.readme pre {
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    padding: 16px;
+    overflow: auto;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.readme code {
+    font-size: 13px;
+    background-color: rgba(27,31,35,0.05);
+    padding: 0.2em 0.4em;
+    border-radius: 6px;
+}
+
+.readme blockquote {
+    margin: 0 0 16px;
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: 0.25em solid #dfe2e5;
+}
+
+.readme table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.readme th,
+.readme td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+.readme th {
+    background-color: #f6f8fa;
+    font-weight: 600;
+}

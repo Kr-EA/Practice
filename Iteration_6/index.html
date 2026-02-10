@@ -1,0 +1,24 @@
+<!-- Способы объявления скрипта. Defer. Async
+<script src="./index.js"></script> - объявление скрипта (при компиляции на этом теге произойдет остановка, скрипт скачается и выполнится, и только затем продолжится рендер страницы)
+<script src="./index.js" defer></script> - скрипт не блокирует рендер. Выполнение произойдет только после того, как вся страница отрендерится
+<script src="./index.js" async></script> - скрипт не блокирует рендер. Выполнение произойдет асинхронно, когда скрипт скачается, вне зависимости от того, насколько страница отрендерена -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iteration 5</title>
+    <script type="module" src="./index.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./card-style.css">
+</head>
+<body>
+    <form class="change-username">
+        <input class="username username-input" type="text" placeholder="Введите имя пользователя">
+        <input class="username username-submit" type="submit">
+    </form>
+    <div class="repo-storage">
+    </div>
+</html>
