@@ -1,0 +1,41 @@
+<!-- Способы объявления скрипта. Defer. Async
+<script src="./index.js"></script> - объявление скрипта (при компиляции на этом теге произойдет остановка, скрипт скачается и выполнится, и только затем продолжится рендер страницы)
+<script src="./index.js" defer></script> - скрипт не блокирует рендер. Выполнение произойдет только после того, как вся страница отрендерится
+<script src="./index.js" async></script> - скрипт не блокирует рендер. Выполнение произойдет асинхронно, когда скрипт скачается, вне зависимости от того, насколько страница отрендерена -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iteration 5</title>
+    <script src="./index.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <form class="change-username">
+        <input class="username username-input" type="text" placeholder="Введите имя пользователя">
+        <input class="username username-submit" type="submit">
+    </form>
+    <div class="repo-storage">
+    </div>
+    <!-- <form class="create-repo">
+        <input class="repo repo-username-input" type="text" placeholder="Введите автора">
+        <input class="repo repo-reponame-input" type="text" placeholder="Введите имя репозитория">
+        <input class="repo repo-desc-input" type="text" placeholder="Введите описание репозитория">
+        <label class="repo repo-type-input">
+            <label>
+                <input type="radio" name="type-checkbox" value="Private">
+                Private
+            </label>
+            <label>
+                <input type="radio" name="type-checkbox" value="Public">
+                Public
+            </label>
+        </label>
+        <input class="repo repo-stars-input" type="text" placeholder="Введите число звезд">
+        <input class="repo repo-forks-input" type="text" placeholder="Введите число форков">
+        <input class="repo repo-lang-input" type="text" placeholder="Введите язык репозитория">
+        <input class="repo repo-submit" type="submit">
+    </form> -->
+</html>
