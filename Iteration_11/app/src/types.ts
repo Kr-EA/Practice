@@ -1,12 +1,11 @@
-export type Repo = {
+export type Child = {
     name: string,
-    private: 'Private' | 'Public',
-    description: string,
-    id: string,
-    language: string,
-    stargazers_count: string,
-    forks: string
-    html_url: string,
-    created_at: string,
-    owner: {html_url: string}
+    age: number,
+}
+export type User = {
+    name: string,
+    age: number,
+    phone: string,
+    email: string,
+    children: Array<Child>
 }

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
+import { User } from './types';
 
 const validationSchema = Yup.object({
   users: Yup.array().of(
@@ -11,8 +12,8 @@ const validationSchema = Yup.object({
       phone: Yup.string().matches(/^[0-9+\-\s()]+$/, 'Неверный формат').required('Обязательно'),
       children: Yup.array().of(
         Yup.object({
-          childName: Yup.string().required('Имя ребенка обязательно'),
-          childAge: Yup.number().required('Обязательно').min(0, 'Возраст >= 0'),
+          name: Yup.string().required('Имя ребенка обязательно'),
+          age: Yup.number().required('Обязательно').min(0, 'Возраст >= 0'),
         })
       ),
     })
@@ -20,6 +21,13 @@ const validationSchema = Yup.object({
 });
 
 const UserForm = () => {
+
+  const [users, setUsers] = useState<Array<User>>([])
+
+  useEffect(() => {
+    console.log('Users обновились:', users)
+  }, [users])
+
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', fontFamily: 'sans-serif' }}>
       <h1>Список пользователей</h1>
@@ -27,16 +35,16 @@ const UserForm = () => {
       <Formik
         initialValues={{
           users: [
-            { name: '', age: '', email: '', phone: '', children: [{ childName: '', childAge: '' }] }
+            { name: '', age: 0, email: '', phone: '', children: [{ name: '', age: 0 }] }
           ],
         }}
         validationSchema={validationSchema}
         onSubmit={(values) => {
-          console.log('Данные формы:', values);
-          alert('Успешно! Проверьте консоль.');
+          setUsers([...users, ...values.users])
+          console.log('Текущий список пользователей выведен в консоль');
         }}
       >
-        {({ values, isSubmitting }) => (
+        {({ values }) => (
           <Form>
             <FieldArray name="users">
               {({ push, remove, form }) => (
@@ -82,28 +90,28 @@ const UserForm = () => {
                                   <div style={{ flex: 2 }}>
                                     <label style={{fontSize: '12px'}}>Имя ребенка</label>
                                     <Field 
-                                      name={`users[${userIndex}].children[${childIndex}].childName`} 
+                                      name={`users[${userIndex}].children[${childIndex}].name`} 
                                       placeholder="Имя"
                                       style={{ width: '100%', padding: '6px' }} 
                                     />
-                                    <ErrorMessage name={`users[${userIndex}].children[${childIndex}].childName`} component="div"/>
+                                    <ErrorMessage name={`users[${userIndex}].children[${childIndex}].name`} component="div"/>
                                   </div>
 
                                   <div style={{ flex: 1 }}>
                                     <label style={{fontSize: '12px'}}>Возраст</label>
                                     <Field 
-                                      name={`users[${userIndex}].children[${childIndex}].childAge`} 
+                                      name={`users[${userIndex}].children[${childIndex}].age`} 
                                       type="number"
                                       placeholder="Возраст"
                                       style={{ width: '100%', padding: '6px' }} 
                                     />
-                                    <ErrorMessage name={`users[${userIndex}].children[${childIndex}].childAge`} component="div"/>
+                                    <ErrorMessage name={`users[${userIndex}].children[${childIndex}].age`} component="div"/>
                                   </div>
 
                                   <button 
                                     type="button" 
                                     onClick={() => removeChild(childIndex)}
-                                    style={{ marginBottom: '10px', color: 'red', border: '1px solid red', background: 'white', cursor: 'pointer' }}
+                                    style={{ height: '30px', padding: '4px', color: 'red', border: '1px solid red', background: 'white', cursor: 'pointer' }}
                                   >
                                     Удалить
                                   </button>
@@ -112,7 +120,7 @@ const UserForm = () => {
                               
                               <button 
                                 type="button" 
-                                onClick={() => pushChild({ childName: '', childAge: '' })}
+                                onClick={() => pushChild({ name: '', age: 0 })}
                                 style={{ fontSize: '13px', cursor: 'pointer' }}
                               >
                                 + Добавить ребенка
@@ -122,7 +130,7 @@ const UserForm = () => {
                         </FieldArray>
                       </div>
 
-                      <div style={{ marginTop: '20px', borderTop: '1px dashed #ccc', paddingTop: '10px' }}>
+                      <div style={{ marginTop: '20px', borderTop: '1px solid #ccc', paddingTop: '10px' }}>
                         <button 
                           type="button" 
                           onClick={() => remove(userIndex)}
@@ -137,7 +145,7 @@ const UserForm = () => {
                   <button 
                     type="button" 
                     onClick={() => push({ name: '', age: '', email: '', phone: '', children: [] })}
-                    style={{ padding: '10px 20px', fontSize: '16px', cursor: 'pointer', background: '#007bff', color: 'white', border: 'none', borderRadius: '4px' }}
+                    style={{ width:'100%', padding: '10px 20px', fontSize: '16px', cursor: 'pointer', background: '#007bff', color: 'white', border: 'none', borderRadius: '4px' }}
                   >
                     + Добавить пользователя
                   </button>
@@ -145,8 +153,8 @@ const UserForm = () => {
               )}
             </FieldArray>
 
-            <div style={{ marginTop: '30px', borderTop: '2px solid #333', paddingTop: '20px' }}>
-              <button type="submit" disabled={isSubmitting} style={{ padding: '12px 24px', fontSize: '18px', cursor: 'pointer', background: '#28a745', color: 'white', border: 'none', borderRadius: '4px' }}>
+            <div style={{ width:'100%', marginTop: '30px', borderTop: '2px solid #333', paddingTop: '20px' }}>
+              <button type="submit" style={{ width:'100%', padding: '12px 24px', fontSize: '18px', cursor: 'pointer', background: '#28a745', color: 'white', border: 'none', borderRadius: '4px' }}>
                 Отправить все данные
               </button>
             </div>
