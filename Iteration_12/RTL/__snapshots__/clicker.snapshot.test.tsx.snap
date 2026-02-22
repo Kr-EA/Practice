@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`matches snapshot 1`] = `
+<div>
+  <div>
+    <span
+      data-testid="count"
+    >
+      0
+    </span>
+    <button>
+      +
+    </button>
+  </div>
+</div>
+`;

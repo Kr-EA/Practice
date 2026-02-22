@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["jest"],
+    "jsx": "react-jsx"
+  },
+  "include": ["math.test.ts", "api.test.ts", "RTL/clicker.snapshot.test.tsx", "RTL/clicker.logic.test.tsx"],
+  "exclude": ["node_modules"]
+}
